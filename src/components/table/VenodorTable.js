@@ -3,7 +3,7 @@ import AppTable from './AppTable'
 import './Table.css'
 
 function VendorTable({ vendors, columnNames }) {
-    const [Header, setHeader] = useState(columnNames)
+    const [Header, setHeader] = useState({})
     const [Vendors, setVendors] = useState(vendors.map(vendor => ({ ...vendor, isOpen: false, isEdit: false })))
     const [SortedBy, setSortedBy] = useState({ key: 'vendorName', order: true })
 
@@ -34,6 +34,15 @@ function VendorTable({ vendors, columnNames }) {
         return () => { }
 
     }, [SortedBy])
+
+    useEffect(() => {
+        setHeader(columnNames)
+
+        return () => {
+
+        }
+    }, [columnNames])
+
 
     return (
         <table>
