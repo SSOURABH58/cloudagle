@@ -1,0 +1,65 @@
+.tableSection {
+  flex: 1;
+  background-color: #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.status {
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  height: 100px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #ffffff99;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.vendorTable {
+  margin-top: 10px;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff99;
+  font-weight: bold;
+  font-size: 1.2em;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-weight: normal;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #20254e;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 5px;
+  padding-left: 8px;
+  cursor: pointer;
+}
+
+td {
+  padding-left: 8px;
+  min-width: 70px;
+}
+
+.lightBlue {
+  background-color: #20254e44;
+}
+
+.lightApp {
+  background-color: #644c472e;
+}
+
+.appHeader {
+  background-color: #54352e5e;
+}
