@@ -36,14 +36,14 @@ function AppTable({ Header, pApps }) {
         <table style={{ borderRadius: 0 }}>
             <thead>
                 <tr>
-                    {Header.map((header, key) => <th key={key} className={'appHeader'} onClick={() => handleSort(header.object)}>{header.title + ' '}{SortedBy.key === header.object ? SortedBy.order ? <span>&#8595;</span> : <span>&#8593;</span> : <span>{'  '}</span>}</th>)}
+                    {Header?.map((header, key) => <th key={key} className={'appHeader'} onClick={() => handleSort(header.object)}>{header.title + ' '}{SortedBy.key === header.object ? SortedBy.order ? <span>&#8595;</span> : <span>&#8593;</span> : <span>{'  '}</span>}</th>)}
                     <th className={'appHeader'} >{''}</th>
                 </tr>
             </thead>
             <tbody>
                 {Apps.map((app, key) => <tr key={key}>
                     {
-                        Header.map((header, key1) => <td key={key1} className={!(key & 1) ? '' : 'lightApp'}>
+                        Header?.map((header, key1) => <td key={key1} className={!(key & 1) ? '' : 'lightApp'}>
                             {app.isEdit ?
                                 (header.object !== 'Apps' ?
                                     <input
