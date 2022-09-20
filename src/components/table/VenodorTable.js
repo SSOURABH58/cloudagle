@@ -4,7 +4,7 @@ import './Table.css'
 
 function VendorTable({ vendors, columnNames }) {
     const [Header, setHeader] = useState({})
-    const [Vendors, setVendors] = useState(vendors.map(vendor => ({ ...vendor, isOpen: false, isEdit: false })))
+    const [Vendors, setVendors] = useState([])
     const [SortedBy, setSortedBy] = useState({ key: 'vendorName', order: true })
 
     const handleSelect = (id) => {
@@ -27,36 +27,38 @@ function VendorTable({ vendors, columnNames }) {
     useEffect(() => {
         const { key, order } = SortedBy
 
-        setVendors(state => [...state].sort((a, b) =>
+        setVendors(state => state ? [...state].sort((a, b) =>
             order ? (a[key] > b[key] ? 1 : -1) :
-                (a[key] < b[key] ? 1 : -1)))
+                (a[key] < b[key] ? 1 : -1)) : [])
 
         return () => { }
 
     }, [SortedBy])
 
+
     useEffect(() => {
         setHeader(columnNames)
+        setVendors(vendors?.map(vendor => ({ ...vendor, isOpen: false, isEdit: false })))
 
         return () => {
 
         }
-    }, [columnNames])
+    }, [columnNames, vendors])
 
 
     return (
         <table>
             <thead>
                 <tr>
-                    {Header.vendor.map((header, key) => <th key={key} onClick={() => handleSort(header.object)}>{header.title + ' '}{SortedBy.key === header.object ? SortedBy.order ? <span>&#8595;</span> : <span>&#8593;</span> : ''}</th>)}
+                    {Header?.vendor?.map((header, key) => <th key={key} onClick={() => handleSort(header.object)}>{header.title + ' '}{SortedBy.key === header.object ? SortedBy.order ? <span>&#8595;</span> : <span>&#8593;</span> : ''}</th>)}
                     <th>{''}</th>
                 </tr>
             </thead>
             <tbody>
-                {Vendors.map((vendor, key) => [
+                {Vendors?.map((vendor, key) => [
                     <tr key={key} onClick={() => handleSelect(vendor.id)}>
 
-                        {Header.vendor.map((header, key1) => <td key={key1} className={!(key & 1) ? '' : 'lightBlue'}>{vendor.isEdit ?
+                        {Header?.vendor?.map((header, key1) => <td key={key1} className={!(key & 1) ? '' : 'lightBlue'}>{vendor.isEdit ?
                             (header.object !== 'Apps' ?
                                 <input
                                     type="text"
